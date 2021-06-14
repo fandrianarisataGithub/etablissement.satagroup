@@ -1,0 +1,251 @@
+Lors d'un merge, par défaut, le message du commit de fusion respecte le format Merge branch 'branch1' into 'branch'. Peut-on surcharger ce message ?
+
+
+
+Oui, en utilisant l'option --messages=
+
+
+
+Oui, en utilisant l'option --commit=
+
+
+
+Oui, en utilisant l'option --edit=
+
+
+
+Non, ce n'est pas possible
+
+
+//
+La référence relative HEAD~2 est équivalente à :
+
+
+
+HEAD^^
+
+
+
+HEAD^1
+
+
+
+HEAD^2
+
+
+
+HEAD~^
+
+
+
+HEAD~1^
+
+
+
+HEAD^~1
+
+
+
+HEAD~1~1
+
+//
+
+Sur le dépôt distant, il y a une branche nommée ma_branche. Comment peut-on supprimer cette branche distante ?
+
+
+
+git branch -d ma_branche
+
+
+
+git branch -D ma_branche
+
+
+
+git push origin --delete ma_branche
+
+
+
+git push origin :ma_branche
+
+
+
+Quelle(s) combinaison(s) de commande me permet de mettre à jour une branche courante locale par rapport à ma branche distante ?
+
+
+
+git fetch + git checkout
+
+
+
+git fetch + git merge
+
+
+
+git fetch + git rebase
+
+
+
+git fetch + git reset
+
+
+
+git pull
+
+//
+
+Comment puis-je simuler un merge en dry-run entre deux branches ?
+
+
+
+git merge --dry-run
+
+
+
+git merge --no-commit --no-ff
+
+
+
+git merge --no-ff
+
+//
+
+Une anomalie est présente depuis une certaine version du dépôt, et on souhaite savoir quel commit a embarqué cette anomalie. Quelle commande aide à retrouver le commit fautif ?
+
+
+
+git bisect
+
+
+
+git blame
+
+
+
+git dissect
+
+
+
+git whatchanged
+
+//
+
+Je souhaite pousser l'ensemble des tags annotés en une seule fois, mais sans pousser les tags légers. Comment procéder ?
+
+
+
+git push --only-annotated-tags pousse uniquement les tags annotés.
+
+
+
+git push --no-lightweighted-tags ignore les tags légers.
+
+
+
+git push --tags ne fait pas de distinction entre les tags annotés et les tags légers. Ce n'est donc pas possible.
+
+//
+
+Je souhaite ajouter un contrôle sur le format de mes messages de commit. Comment peut-on refuser un commit si le message de commit n'est pas valable ?
+
+
+
+Création d'un fichier commit-msg dans le répertoire .git/hooks
+
+
+
+Création d'un fichier commit-msg.hook dans le répertoire .git/hooks
+
+
+
+Création d'un fichier commit-msg.sh dans le répertoire .git/hooks
+
+//
+
+Lorsque je fais un commit, comment puis-je ignorer un hook de pre-commit (en charge des linters par exemple) ?
+
+
+
+Ajouter une option --force à la commande git commit
+
+
+
+Ajouter une option --no-verify à la commande git commit
+
+
+
+Ajouter une option --no-pre-commit à la commande git commit
+
+//
+
+Ma HEAD pointe sur la référence de ma branche locale ma_branche. Quel est le contenu du fichier HEAD dans le répertoire .git ?
+
+
+
+ref: 1234567 (qui correspond au SHA-1 du commit pointé par ma branche)
+
+
+
+ref: branches/heads/ma_branche
+
+
+
+ref: refs/heads/ma_branche
+
+
+
+ref: refs/remotes/origin/ma_branche
+
+//
+Les informations utiles à la construction du SHA-1 d'un commit sont :
+
+
+
+le SHA-1 du commit parent
+
+
+
+le SHA-1 du source tree
+
+
+
+l'auteur
+
+
+
+le committeur
+
+
+
+la date de l'auteur
+
+
+
+la date du committeur
+
+
+
+le message
+
+
+
+le nombre d'octets de l'objet commit
+
+
+
+
+Parmi les affirmations suivantes sur la méthode .ready() lesquelles sont exactes ?
+
+
+
+Elle s’applique sur le body du document une fois le DOM chargé.
+
+
+
+Elle s’applique immédiatement dès que le DOM est disponible au chargement de la page et donc avant que les images soient disponibles.
+
+
+
+Elle est exécutée après l’évènement .load() dans l’ordre de chargement d’une page.
+
+::

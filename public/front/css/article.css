@@ -1,0 +1,202 @@
+.quote-imgs-thumbs {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+}
+
+.quote-imgs-thumbs--hidden {
+    display: none;
+}
+
+.img-preview-thumb {
+    background: #fff;
+    border: 1px solid #777;
+    border-radius: 0.25rem;
+    box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.12);
+    margin-right: 1rem;
+    max-width: 140px;
+    padding: 0.25rem;
+}
+
+
+/* progressbar style */
+
+
+/*#progress-wrp {
+    border: 1px solid #0099CC;
+    padding: 1px;
+    position: relative;
+    border-radius: 3px;
+    margin: 10px;
+    text-align: left;
+    background: #fff;
+    box-shadow: inset 1px 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+#progress-wrp .progress-bar {
+    height: 20px;
+    border-radius: 3px;
+    background-color: #79f763;
+    width: 0;
+    box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);
+}
+
+#progress-wrp .status {
+    top: 3px;
+    left: 50%;
+    position: absolute;
+    display: inline-block;
+    color: #000000;
+}
+*/
+
+
+/* fin pb */
+
+input[type="file"] {
+    display: block;
+    font-size: 12px;
+}
+/*.h-entry{
+    height: 250px;
+    background : green;
+    overflow: hidden;
+    margin-bottom: 50px;
+}*/
+.imageThumb {
+    border: 2px solid;
+    padding: 1px;
+    cursor: pointer;
+    width: 200px;
+    height: 200px !important;
+}
+
+.pip {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+}
+
+.remove {
+    display: block;
+    background: #444;
+    border: 1px solid black;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 12px;
+}
+.h-entry{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.remove:hover {
+    background: white;
+    color: black;
+}
+
+.p_truncate, .p_truncate > p {
+    display: block;
+    height: 50px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.h-entry img{
+    height: 150px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-shadow: 0px 0px 10px rgba(189,189,189,0.8);
+    max-width: 80%;
+}
+
+h2.font-size-regular a{
+    color: rgba(23,23,24,1) !important;
+}
+
+.p_truncate{
+    padding-left: 15px;
+    border-left: 5px solid rgba(189,189,189,0.5);
+    font-size: 12px !important;
+    color: rgba(23,23,24,1) !important;
+}
+
+/*style comments*/
+.article_form_comment{
+    width: 100%;
+}
+
+.list_comments_article{
+    width: 100%;
+}
+
+.list_comments_article .card{
+    padding: 15px;
+}
+.list_comments_article .post-heading img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.list_comments_article .meta{
+    margin-left: 15px;
+}
+.post-description{
+    padding-left: 75px;
+}
+.post-description p{
+    font-size: 13px;
+}
+
+.h-entry h2, .h-entry .meta, .h-entry p.p_truncate{
+    width: 80%;
+    margin: 0px auto 0px auto;
+}
+
+
+.comment_action a{
+    margin-left: 15px;
+}
+
+@media all and (max-width : 480px){
+    .my_container .bg-light{
+        max-width: 360px;
+        margin: 0px auto 0px auto;
+        
+    } 
+    .comment_action{
+        text-align: end;     
+    }
+    .video_article {
+        max-width: 360px;
+        margin: 25px auto 0px auto !important;
+    }
+    .video_article video{
+        width: 100%;
+    }
+}
+
+.div_action_article{
+    margin: 25px 0px 10px 0px;
+}
+
+.top_edit_article{
+    margin-top: 50px;
+}
+
+.delete_files:hover{
+    cursor: pointer;
+    color: red;
+}
+/* styles comments */
+
+
+

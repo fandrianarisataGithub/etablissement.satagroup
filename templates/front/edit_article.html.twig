@@ -1,0 +1,437 @@
+{% extends "base_front.html.twig" %}
+{% block title %}
+	<title>Articles</title>
+{% endblock %}
+{% block stylesheets %}
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('front/css/article.css') }}">
+	<style>
+		.new_article{
+			display:none ;
+		}
+		.error_form p{
+			padding-left : 25px;
+			color : #fff;
+			font-size : 13px;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+{# add article #}
+<div class="site-section bg-light">
+	<div class="container">
+		<div class="row justify-content-center mb-5">
+			<div class="col-md-7 text-center border-primary top_edit_article">
+				<h2 class="font-weight-light text-primary">Modifier un article</h2>
+			</div>
+		</div>
+		<form action="" id="form_article">
+			<div class="form-group">
+				<label for="titre">Titre de l'article</label>
+				<input type="text" placeholder="Titre de l'article" name="" id="titre" class="form-control" value ="{{ article.titre }}">
+			</div>
+			<div class="form-group">
+				<label>Inserer un ou plusieurs images</label>
+				{# image #}
+				<div class="field" align="left">
+					<input type="file" id="filesImages" name="filesImages[]" multiple/>
+					{% set tab_images = [] %}
+					{% set tab_files = [] %}
+					{% set tab_videos = [] %}
+					{% for item in article.fileUploads %}
+						{% if item.filetype == "image" %}
+							{% set tab_images = tab_images|merge([item]) %}
+						{% endif %}
+
+						{% if item.filetype == "fichier" %}
+							{% set tab_files = tab_files|merge([item]) %}
+						{% endif %}
+
+						{% if item.filetype == "video" %}
+							{% set tab_videos = tab_videos|merge([item]) %}
+						{% endif %}
+
+					{% endfor %}
+
+					{% if tab_images is not empty %}
+						{% for item in tab_images %}
+							<span class="pip">
+								<img src="{{ asset('uploads/article/images/' ~ item.url) }}"  alt="{{ item.url }}" class="imageThumb">
+								<br>
+								<span class="remove" data-id="{{ item.id }}">Effacer</span>
+							</span>
+
+						{% endfor %}
+					{% endif %}
+					
+				</div>
+				{# /image #}
+
+			</div>
+			<div class="form-group">
+				<label>Inserer un ou plusieurs fichiers (*.pdf, ...)</label>
+				{# files #}
+				<div class="field" align="left">
+					<input type="file" id="filesFiles" name="filesFiles[]" multiple/>
+				</div>
+				{# /files #}
+				{% if tab_files is not empty %}
+					<div class="liste_files">
+						<ul>
+							{% for item in tab_files %}
+								<li>
+									<span class="fa fa-trash delete_files" data-id="{{ item.id }}"></span>
+									<a href="{{ asset('uploads/article/fichiers/' ~ item.url ) }}" data-id="{{ item.id }}">{{ item.url }}
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+
+
+			</div>
+			<div id="test"></div>
+			<div class="form-group">
+				<label>Inserer une video</label>
+				<div id="div_video_article">
+					<input id="input_video_article" type="file" accept="video/*">
+					{% if tab_videos is not empty %}
+						
+						<video controls width="300" height="300" id="video_existant">
+							<source src="{{ asset('uploads/article/videos/' ~ tab_videos[0].url) }}" type="video/Mp4">
+						</video>
+						<div class="delete_video">
+							<a href="#" class="btn btn-danger" id="delete_video" data-id="{{ tab_videos[0].id }}">supprimer ce video</a>
+						</div>
+						{% else %}
+						<video id="video" width="300" height="300" controls>				
+						</video>	
+					{% endif %}	
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="contenu">Contenu</label>
+				<textarea placeholder="Contenu de l'article"  name="" id="contenu" cols="30" rows="10" class="form-control"></textarea>
+			</div>
+			<div class="form-group">
+				
+				<div id="progress-wrp" class="progress" style = "display:none">
+					<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div >
+					{# <div class="status">0%</div> #}
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="error_form bg-danger" style="display:none;">
+					<p></p>
+				</div>
+				<button id="edit_article" data-id="{{ article.id }}" class="btn btn-primary">
+					Enregistrer
+				</button>
+				<button class="btn btn-warning" id="btn_reset">Annuler</button>
+			</div>
+		</form>
+
+	</div>
+</div>
+{# fin add artcle #}
+
+	<div class="newsletter bg-primary py-5">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6">
+					<h2>Newsletter</h2>
+					<div id="test"></div>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+				</div>
+				<div class="col-md-6">
+					<form class="d-flex">
+						<input type="text" class="form-control" placeholder="Email">
+						<input type="submit" value="S'inscrire" class="btn btn-white">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor 4
+		// instance, using default configuration.
+		$(document).ready(function() {
+
+			$('#btn_cache_new_article').click(function(params) {
+				params.preventDefault();
+				$(".new_article").fadeIn();
+				$(".justify-content-center").css("display", "flex");
+			})
+
+           	$('#contenu').summernote({			
+				onChange : function(){
+					$(".error_form").fadeOut();
+				},
+                callbacks: {
+					onImageUpload: function(files) {
+						for(let i=0; i < files.length; i++) {
+							$.upload(files[i]);
+						}
+					}
+				},
+				
+				toolbar: [
+					[ 'style', [ 'style' ] ],
+					[ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
+					[ 'fontname', [ 'fontname' ] ],
+					[ 'fontsize', [ 'fontsize' ] ],
+					[ 'color', [ 'color' ] ],
+					[ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
+					[ 'table', [ 'table' ] ],
+					[ 'insert', [ 'link'] ],
+					[ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
+				],
+				height: 500,	
+            });		
+
+			$("#contenu").summernote('code', `{{ article.contenu|raw }}`);	
+
+			// send the file
+
+			$.upload = function (file) {
+				let out = new FormData();
+				out.append('file', file, file.name);
+
+				$.ajax({
+					method: 'POST',
+					url: '{{ path("summernote_add_image") }}',
+					contentType: false,
+					cache: false,
+					processData: false,
+					data: out,
+					success: function (img) {
+						if(image != "error"){
+							$('#contenu').summernote('insertImage', img);
+						}
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						console.error(textStatus + " " + errorThrown);
+					}
+				});
+			};
+
+        });
+		
+		// video traitement
+
+		const input = document.getElementById('input_video_article');
+		const video = document.getElementById('video');
+		const videoSource = document.createElement('source');
+
+		input.addEventListener('change', function() {
+			const files = this.files || [];
+
+			if (!files.length) return;
+			
+			const reader = new FileReader();
+
+			reader.onload = function (e) {
+				videoSource.setAttribute('src', e.target.result);
+				video.appendChild(videoSource);
+				video.load();
+				video.play();
+			};
+	
+			reader.onprogress = function (e) {
+				console.log('progress: ', Math.round((e.loaded * 100) / e.total));
+			};
+			
+			reader.readAsDataURL(files[0]);
+		});
+
+		$(document).ready(function() {
+			if (window.File && window.FileList && window.FileReader) {
+				$("#filesImages").on("change", function(e) {
+					var files = e.target.files,
+						filesLength = files.length;
+					for (var i = 0; i < filesLength; i++) {
+						var f = files[i]
+						var fileReader = new FileReader();
+						fileReader.onload = (function(e) {
+						var file = e.target;
+						$("<span class=\"pip\">" +
+							"<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+							"<br/><span class=\"remove\">Effacer</span>" +
+							"</span>").insertAfter("#filesImages");
+						$(".remove").click(function(){
+							$(this).parent(".pip").remove();
+						});
+						
+						});
+						fileReader.readAsDataURL(f);
+					}
+						console.log(files);
+				});
+
+			} else {
+				alert("Your browser doesn't support to File API")
+			}
+
+			$(".remove").click(function(){
+				var id = $(this).attr('data-id');
+				$.ajax({
+					url : "/profile/delete_file/" + id,
+					type : "POST",
+					success : function(response){
+						console.log('fichier _supprimer')
+					},
+					error : function(){
+						console.error('error delete image')
+					}
+				})
+
+				$(this).parent(".pip").remove();
+				
+			});
+
+			$("#btn_reset").click(function(ev){
+				ev.preventDefault();
+				$("#form_article")[0].reset();
+				$(".new_article").fadeOut();
+			})
+
+			$("#titre, #contenu").focus(function(){
+				$(".error_form").fadeOut();
+			})
+
+			$("#form_article").on("submit", function(ev){
+				ev.preventDefault();
+				
+				var titre = $("#titre").val();
+				var contenu_is_empty = $("#contenu").summernote("isEmpty");
+				
+				if(titre == "" && contenu_is_empty == true){
+					$(".error_form p").text("Veuillez renseigner le champ titre et contenu");
+					$(".error_form").fadeIn();
+				}else{
+
+					var formData = new FormData();
+
+					var files_imagesLength = document.getElementById('filesImages').files.length;
+					var files_filesLength = document.getElementById('filesFiles').files.length;
+					//input_video_article
+					formData.append("file_video", document.getElementById('input_video_article').files[0]);
+					console.log(document.getElementById('input_video_article').files[0])
+					formData.append("titre", document.getElementById('titre').value);
+					formData.append("contenu", document.getElementById('contenu').value);
+					formData.append("user_id", "{{ app.user ? app.user.id : "" }}");
+
+					//console.log(files_imagesLength);
+					for(var i=0;i<files_imagesLength;i++){
+						formData.append("file_images[]", document.getElementById('filesImages').files[i]);
+					}
+
+					for(var i=0;i<files_filesLength;i++){
+						formData.append("file_files[]", document.getElementById('filesFiles').files[i]);
+					}
+
+					$.ajax({
+						url : '/profile/ajax/edit_article/' + '{{ article.id }}',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+						cache: false,
+						processData: false,
+						beforeSend : function(){
+							$("#progress-wrp").fadeIn();
+							$("#add_article").text("Patienter ...");
+						},
+						xhr: function(){
+							//upload Progress
+							var xhr = $.ajaxSettings.xhr();
+							if (xhr.upload) {
+								xhr.upload.addEventListener('progress', function(event) {
+									var percent = 0;
+									var position = event.loaded || event.position;
+									var total = event.total;
+									if (event.lengthComputable)
+									{
+										percent = Math.ceil(position / total * 100);
+									}
+									//update progressbar
+									$(".progress-bar").css("width", + percent +"%");
+									//$(".status").text(percent +"%");
+								}, true);
+							}
+							return xhr;
+						},
+						success: function (html) {
+							if(html == "ok"){
+								window.location.href = "/profile/article/" + "{{ article.id }}";
+							}
+							//$("#test").html(html);
+						},
+						complete : function(){
+							$("#form_article")[0].reset();
+							$('#contenu').summernote('code', '<p><br></p>');
+							$("#progress-wrp").fadeOut();
+							$("#add_article").text("Enregistrer");
+							$(".new_article").fadeOut();
+						}
+
+					});
+				}
+			})
+
+			// delete video 
+
+			$("#delete_video").click(function(ev){
+				ev.preventDefault();
+				var id = $(this).attr('data-id');
+				$.ajax({
+					url : "/profile/delete_file/" + id,
+					type : "POST",
+					beforeSend :  function(){
+						$("#delete_video").text("Patienter ...")
+					},
+					success : function(response){
+						$("#video_existant").remove();
+					},
+					complete : function(){
+						$("#delete_video").hide()
+					},
+					error : function(){
+						console.error('error delete image')
+					}
+				})
+			})
+
+			$(".delete_files").click(function(ev){
+				ev.preventDefault();
+				var id = $(this).attr('data-id');
+				var li = $(this).parent('li');
+				$.ajax({
+					url : "/profile/delete_file/" + id,
+					type : "POST",
+					
+					success : function(response){
+						li.hide();
+						var li_length = $(".liste_files ul li").length;
+						if(li_length == 0){
+							$(".liste_files").hide();
+						}
+					},
+					
+					error : function(){
+						console.error('error delete image')
+					}
+				})
+			})
+			
+		});
+
+	</script>
+
+{% endblock %}

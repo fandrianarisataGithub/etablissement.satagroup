@@ -1,0 +1,227 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	nom du filiere - nom etab
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('back/css/filiere.css') }}">
+{% endblock %}
+{% block titre_page %}
+	Liste des niveaus du filière : nom du filière
+{% endblock %}
+
+{% block body %}
+ 	<div class="add">
+        <a href="#" class="btn btn-primary"><span class="fas fa-plus"></span>Ajouter un niveau</a>
+    </div>
+	<div class="row row_card_et_mat">
+		<div class="content-card-niveau">
+			<div class="card" style="width: 18rem;">
+				<div class="top_card">
+					<ul>
+						<li>
+							<a href="#" class="btn btn-info btn-xs"><span class="fas fa-pencil-alt"></span></a>
+						</li>
+						<li>
+							<a href="#" class="btn btn-danger btn-xs"><span class="fas fa-trash-alt"></span></a>
+						</li>
+					</ul>
+				</div>
+				<div class="card-body card_niveau">
+					<h5 class="card-title">Niveau x</h5>
+					<div class="et_mat">
+						<h6 class="card-subtitle mb-2 text-muted"><span class="badge bg-primary">15</span> Etudiants</h6>
+						<h6 class="card-subtitle mb-2 text-muted"><span class="badge bg-primary">15</span> Matière</h6>
+					</div>
+					<ul>
+						<li><span>Nom matiere 1</span></li>
+						<li><span>Nom matiere 2</span></li>
+						<li>
+							<a href="#" class="btn btn-primary btn-sm">
+								<span class="fa fa-plus"></span>
+								<span>Nouveau matière</span>
+							</a>
+						</li>
+					</ul>
+					<a href="#" class="card-link">Listes de ces étudiants</a>
+				</div>
+			</div>
+		</div>
+		<div class="content-card-niveau">
+			<div class="card" style="width: 18rem;">
+				<div class="top_card">
+					<ul>
+						<li><a href="#" class="btn btn-info btn-xs"><span class="fas fa-pencil-alt"></span></a></li>
+						<li><a href="#" class="btn btn-danger btn-xs"><span class="fas fa-trash-alt"></span></a></li>
+					</ul>
+				</div>
+				<div class="card-body card_niveau">
+					<h5 class="card-title">Niveau x</h5>
+					<div class="et_mat">
+						<h6 class="card-subtitle mb-2 text-muted">
+							<span class="badge bg-primary">15</span>
+							Etudiants</h6>
+						<h6 class="card-subtitle mb-2 text-muted">
+							<span class="badge bg-primary">15</span>
+							Matière</h6>
+					</div>
+					<ul>
+						<li>
+							<span>Nom matiere 1</span>
+						</li>
+						<li>
+							<span>Nom matiere 2</span>
+						</li>
+						<li>
+							<a href="#" class="btn btn-primary btn-sm">
+								<span class="fa fa-plus"></span>
+								<span>Nouveau matière</span>
+							</a>
+						</li>
+					</ul>
+					<a href="#" class="card-link">Listes de ces étudiants</a>
+				</div>
+			</div>
+		</div>
+		<div class="content-card-niveau">
+			<div class="card" style="width: 18rem;">
+				<div class="top_card">
+					<ul>
+						<li><a href="#" class="btn btn-info btn-xs"><span class="fas fa-pencil-alt"></span></a></li>
+						<li><a href="#" class="btn btn-danger btn-xs"><span class="fas fa-trash-alt"></span></a></li>
+					</ul>
+				</div>
+				<div class="card-body card_niveau">
+					<h5 class="card-title">Niveau x</h5>
+					<div class="et_mat">
+						<h6 class="card-subtitle mb-2 text-muted">
+							<span class="badge bg-primary">15</span>
+							Etudiants</h6>
+						<h6 class="card-subtitle mb-2 text-muted">
+							<span class="badge bg-primary">15</span>
+							Matière</h6>
+					</div>
+					<ul>
+						<li>
+							<span>Nom matiere 1</span>
+						</li>
+						<li>
+							<span>Nom matiere 2</span>
+						</li>
+						<li>
+							<a href="#" class="btn btn-primary btn-sm">
+								<span class="fa fa-plus"></span>
+								<span>Nouveau matière</span>
+							</a>
+						</li>
+					</ul>
+					<a href="#" class="card-link">Listes de ces étudiants</a>
+				</div>
+			</div>
+		</div>
+		<div class="content-card-niveau">
+			<div class="card" style="width: 18rem;">
+				<div class="top_card">
+					<ul>
+						<li><a href="#" class="btn btn-info btn-xs"><span class="fas fa-pencil-alt"></span></a></li>
+						<li><a href="#" class="btn btn-danger btn-xs"><span class="fas fa-trash-alt"></span></a></li>
+					</ul>
+				</div>
+				<div class="card-body card_niveau">
+					<h5 class="card-title">Niveau x</h5>
+					<div class="et_mat">
+						<h6 class="card-subtitle mb-2 text-muted">
+							<span class="badge bg-primary">15</span>
+							Etudiants</h6>
+						<h6 class="card-subtitle mb-2 text-muted">
+							<span class="badge bg-primary">15</span>
+							Matière</h6>
+					</div>
+					<ul>
+						<li>
+							<span>Nom matiere 1</span>
+						</li>
+						<li>
+							<span>Nom matiere 2</span>
+						</li>
+						<li>
+							<a href="#" class="btn btn-primary btn-sm">
+								<span class="fa fa-plus"></span>
+								<span>Nouveau matière</span>
+							</a>
+						</li>
+					</ul>
+					<a href="#" class="card-link">Listes de ces étudiants</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}
+{% block javascripts %}
+	<script>
+		$(document).ready(function(){
+				var table = $('#table_liste_etudiant').DataTable({
+					"language": {
+					"sEmptyTable": "Aucune donnée disponible dans le tableau",
+					"sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
+					"sInfoEmpty": "Affichage de l'élément 0 à 0 sur 0 élément",
+					"sInfoFiltered": "(filtré à partir de _MAX_ éléments au total)",
+					"sInfoPostFix": "",
+					"sInfoThousands": ",",
+					"sLengthMenu": "Afficher _MENU_ éléments",
+					"sLoadingRecords": "Chargement...",
+					"sProcessing": "Traitement...",
+					"sSearch": "Rechercher :",
+					"sZeroRecords": "Aucun élément correspondant trouvé",
+					"oPaginate": {
+						"sFirst": "Premier",
+						"sLast": "Dernier",
+						"sNext": "Suivant",
+						"sPrevious": "Précédent"
+					},
+					"oAria": {
+						"sSortAscending": ": activer pour trier la colonne par ordre croissant",
+						"sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+					},
+					"select": {
+						"rows": {
+							"_": "%d lignes sélectionnées",
+							"0": "Aucune ligne sélectionnée",
+							"1": "1 ligne sélectionnée"
+						}
+					}
+				},
+				/*"ajax" : {
+							url : "/profile/historique_heb", // any am Clientcontroller
+							type : 'POST', 
+							data : {
+									'pseudo_hotel' : pseudo_hotel,
+									'date1' : $("#date1").val(),
+									'date2' : $("#date2").val(),
+							},
+							// success : function(response){
+							//     console.log(response);
+							// }, 
+							// error : function(){
+							//     alert('erreur server');
+							// },
+							"dataSrc":"",
+					
+						},*/
+
+				//annule le tri
+				order : [[0 , 'asc']],
+				ordering : false,
+				responsive: true,
+				scrollY: false, // raha scrollena de asina val ex 400
+				scrollX: true,
+				scrollCollapse: true,
+				paging: true,
+				autoFill: true
+			});
+
+			new $.fn.dataTable.FixedHeader(table);
+		})
+	</script>
+{% endblock %}

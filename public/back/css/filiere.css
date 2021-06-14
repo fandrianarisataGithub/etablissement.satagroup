@@ -1,0 +1,127 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+.row_card_et_mat{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+.link_filiere:hover{
+    text-decoration: none;
+   
+}
+.content-card-niveau{
+    margin-bottom: 25px;
+}
+.link_filiere:hover .card  {
+    
+   background-color: #4e73df;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+        border-left-color: rgb(227, 230, 240);
+        border-left-style: solid;
+        border-left-width: 1px;
+    border-radius: .35rem;
+}
+
+.link_filiere:hover .card span{
+    color: #fff;
+}
+
+.add{
+    margin-bottom: 40px;
+}
+
+.add a span.fa-plus{
+    margin-right: 10px;
+}
+.card_niveau h5{
+    text-align: center;
+    border-bottom: 1px solid rgba(200,200,200,0.5);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+.card_niveau ul {
+    list-style: none;
+    padding: 0;
+}
+.card_niveau ul li:not(:first-child){
+    margin-top: 10px;
+}
+.et_mat{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.card_niveau .badge{
+    color: #fff;
+}
+
+.top_card ul{
+   margin: 0;
+    padding: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: end;
+}
+
+.top_card ul li a.btn-xs{
+    font-size: 12px;
+    background: transparent;
+    border-radius: 50%;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 25px;
+    height: 25px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 5px;
+    border: none;  
+}
+.top_card ul li:first-child a.btn-xs{
+    margin-right: 10px;
+}
+
+.top_card ul li a.btn-xs span.fa-pencil-alt{
+    color: #4e73df;
+}
+
+.top_card ul li a.btn-xs span.fa-trash-alt{
+    color: red;
+}
+
+.top_card ul li:first-child a.btn-xs:hover{
+    background: #4e73df !important;
+}
+
+.top_card ul li:first-child a.btn-xs:hover span {
+    color: #fff !important;
+}
+
+.top_card ul li:last-child a.btn-xs:hover{
+    background: red !important;
+}
+
+.top_card ul li:last-child a.btn-xs:hover span {
+    color: #fff !important;
+}
+
+
+

@@ -1,0 +1,32 @@
+main .card {
+    background: rgb(70, 183, 201);
+    background: linear-gradient(90deg, rgba(70, 183, 201, 1) 0%, rgba(0, 255, 248, 1) 100%);
+}
+
+body {
+    background: #ffffff;
+    color: white;
+}
+
+h3 {
+    font-family: Times New Roman;
+    font-weight: bold;
+}
+
+hr {
+    border-bottom: solid white 1px;
+}
+
+.btn {
+    background: #31353d;
+    border-color: #31353d;
+}
+
+input {
+    background-color: #ffff !important;
+    color: #3a3b3c !important;
+}
+
+::placeholder {
+    color: #3a3b3c !important;
+}

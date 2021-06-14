@@ -1,0 +1,109 @@
+{% extends "base_front.html.twig" %}
+{% block title %}
+	<title>Accueil</title>
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('front/css/article.css') }}">
+{% endblock %}
+{% block body %}
+<div class="site-blocks-cover overlay" style="background-image: url({{ asset('front/images/fond.jpg') }});" data-aos="fade" data-stellar-background-ratio="0.5">
+	<div class="container">
+		<div class="row align-items-center justify-content-center text-center">
+
+			<div class="col-md-12">
+				<div class="row justify-content-center mb-4">
+					{% if app.user %}
+						<div class="col-md-8 text-center">
+							<h1 class="" data-aos="fade-up">{{ app.user.etablissement.nom }} vous souhaire la bienvenue</h1>
+							<p data-aos="fade-up" data-aos-delay="100">Ceci est votre espace utilisateur du plateforme "Nom de notre plateforme"
+							</p>
+						</div>
+					{% else %}
+						<div class="col-md-8 text-center">
+							<h1 class="" data-aos="fade-up">Bienvenue dans notre plateforme!</h1>
+							<p data-aos="fade-up" data-aos-delay="100">Veuillez vous connecter pour bénéficierc plus d'articles, de partages, de cours venant de votre établissement.
+							</p>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{# articles #}
+<div class="site-section bg-light">
+	<div class="container">
+		<div class="row justify-content-center mb-5">
+			<div class="col-md-7 text-center border-primary">
+				<h2 class="font-weight-light text-primary">Nos articles</h2>
+			</div>
+		</div>
+		<div class="row mb-3 justify-content-center align-items-stretch">
+			{% for article in articles %}
+
+				{% set file_image = null %}
+				{% set break = false %}
+
+				{% for file in article.fileUploads %}
+					{% if file.filetype == "image" %}
+						{% set file_image = file %}
+						{% set break = true %}
+					{% endif %}
+				{% endfor %}
+				<div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+					<div class="h-entry">
+						{% if file_image %}
+							<img src="{{ asset('uploads/article/images/' ~ file_image.url) }}" alt="{{ file_image.url }}" 
+							class="img-fluid rounded">
+						{% endif %}
+						
+						<h2 class="font-size-regular">
+							<a href="#" class="text-black">{{ article.titre }}</a>
+						</h2>
+						<div class="meta mb-3">by
+							{{ article.membre.nom }}<span class="mx-1">&bullet;</span>
+							{{ article.createdAt|date('d-m-Y H:i') }}
+							<span class="mx-1">&bullet;</span>
+							<div>
+								<a href="{{ path('article', {'id': article.id }) }}">Voir details</a>
+							</div>
+						</div>
+						{% set some_html = article.contenu|raw %}
+						<p class="p_truncate text-truncate">{{ some_html[:150]|striptags ~ ' ...' }}</p>
+					</div>
+				</div>
+			{% endfor %}
+
+			<div class="col-12 text-center mt-4">
+				<a href="{{ path('articles', {'etablissement_id' : etablissement.id}) }}" class="btn btn-primary rounded py-2 px-4 text-white">Voir tous les articles</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{# article #}
+
+<div class="site-section" data-aos="fade">
+	<div class="container">
+		<div class="row justify-content-center mb-5">
+			<div class="col-md-7 text-center border-primary">
+				<h2 class="font-weight-light text-primary">Liste des filières disponibles</h2>
+			</div>
+		</div>
+		<div class="overlap-category mb-5">
+			<div class="row justify-content-center align-items-stretch no-gutters">
+				<div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+					<a href="#" class="popular-category h-100">
+						<span class="icon">
+							<span class="flaticon-open-book"></span>
+						</span>
+						<span class="caption mb-2 d-block">Cars &amp; Vehicles</span>
+						<span class="number">1,921</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
